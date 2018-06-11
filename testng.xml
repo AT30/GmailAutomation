@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test thread-count="5" name="Test">
+		<packages>
+			<package name="tests">
+				<include name="tests">
+					<classes>
+						<class name="tests.TC_001_VerifyGmailSignIn" />
+						<class name="tests.TC_002_VerifyComposeEmail" />
+					</classes>
+				</include>
+			</package>
+		</packages>
+
+
+	</test> <!-- Test -->
+
+	<listeners>
+		<listener class-name="atu.testng.reports.listeners.ATUReportsListener"></listener>
+		<listener class-name="atu.testng.reports.listeners.ConfigurationListener"></listener>
+		<listener class-name="atu.testng.reports.listeners.MethodListener"></listener>
+	</listeners>
+</suite> <!-- Suite -->
