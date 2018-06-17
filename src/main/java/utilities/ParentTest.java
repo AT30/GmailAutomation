@@ -44,7 +44,7 @@ public class ParentTest {
 	public void setUp() {
 		// Get browser type
 // 		String browserType = getConfig("browserType");
-		String browserType = System.getProperty("browserType");
+		String browserType = System.getenv("browserType");
 		switch (browserType) {
 		case "FF":
 			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"\\src\\test\\Drivers\\geckodriver.exe");
