@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import atu.testng.reports.ATUReports;
+import atu.testng.reports.logging.LogAs;
 import utilities.ParentPage;
 
 public class HomePage extends ParentPage {
@@ -25,21 +27,26 @@ public class HomePage extends ParentPage {
 	
 	public void clickCompose() {
 		click(composeButton);
+		ATUReports.add("Click Compose button", LogAs.PASSED, null);
 	}
 	
 	public void enterTo(String to) {
 		enterText(toTexbox, to);
+		ATUReports.add("Enter to", to, LogAs.PASSED, null);
 	}
 
 	public void enterSubject(String subject) {
 		enterText(subjectTexbox, subject);
+		ATUReports.add("Enter subject", subject, LogAs.PASSED, null);
 	}
 	
 	public void enterBody(String body) {
 		enterText(bodyTextbox, body);
+		ATUReports.add("Enter body", body, LogAs.PASSED, null);
 	}
 	
 	public void clickSend() {
 		click(sendButton);
+		ATUReports.add("Click Send", LogAs.PASSED, null);
 	}
 }
