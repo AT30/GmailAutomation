@@ -14,7 +14,7 @@ public class ParentPage {
 	
 	public ParentPage(WebDriver d) {
 		driver = d;
-		wait = new WebDriverWait(driver, 15);
+		wait = new WebDriverWait(driver, Integer.parseInt(ParentTest.getConfig("WAIT_TIMEOUT_IN_SECONDS")));
 	}
 	
 	public enum Condition {VISIBLE,CLICKABLE};
