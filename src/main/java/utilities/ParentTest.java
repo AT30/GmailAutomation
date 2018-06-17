@@ -43,7 +43,8 @@ public class ParentTest {
 	@BeforeClass
 	public void setUp() {
 		// Get browser type
-		String browserType = getConfig("browserType");
+// 		String browserType = getConfig("browserType");
+		String browserType = System.getProperty("browserType");
 		switch (browserType) {
 		case "FF":
 			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir")+"\\src\\test\\Drivers\\geckodriver.exe");
