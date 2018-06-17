@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Map;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
@@ -11,8 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
-import java.util.Map;
+
 import atu.testng.reports.ATUReports;
 
 public class ParentTest {
@@ -23,13 +23,11 @@ public class ParentTest {
 	static Properties configProperties = null;
 
 	static {
-		System.setProperty("atu.reporter.config", System.getProperty("user.dir")+"\\atu.properties");
-		
 		System.out.println("in static block");
+		System.setProperty("atu.reporter.config", System.getProperty("user.dir")+"\\src\\test\\Config\\atu.properties");
 		configProperties = new Properties();
 		try {
 			configProperties.load(new FileInputStream(new File(System.getProperty("user.dir")+"\\src\\test\\Config\\CommonConfigs.properties")));
-			
 			// Put config data in System.setEnv
 			Map<String, String> envVariables = System.getenv();
 			for (String key : envVariables.keySet()) {
@@ -45,13 +43,27 @@ public class ParentTest {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
+
 	// to launch browser
 	@BeforeClass
 	public void setUp() {
+		// Get Test data
+		String filePath = System.getProperty("user.dir")+"\\src\\test\\DataFiles\\"+testName+".properties";
+		dataProperties = new Properties();
+		try {
+			dataProperties.load(new FileInputStream(new File(filePath)));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		// Get browser type
- 		String browserType = getConfig("browserType");
+		String browserType = getConfig("BROWSER_TYPE");
+		
 		System.out.println("Selected browser: "+browserType);
 		
 		switch (browserType) {
@@ -70,12 +82,17 @@ public class ParentTest {
 			System.out.println("Incorrect browser selected.");
 			System.exit(0);
 		}
-		
+
+		System.out.println("In Setup");
+		// Set driver
 		ATUReports.setWebDriver(driver);
-		driver.get(getConfig("baseUrl"));
+		System.out.println("Set driver for ATU");
+
+		driver.get(getConfig("BASEURL"));
+		System.out.println(getConfig("BASEURL"));
 	}
 
-	public String getConfig(String key) {
+	public static String getConfig(String key) {
 		return configProperties.getProperty(key);
 	}
 
@@ -83,24 +100,11 @@ public class ParentTest {
 	// to quit browser
 	@AfterClass
 	public void tearDown() {
-		driver.quit();
+		System.out.println("In tearDown");
+//		driver.quit();
 	}
 
 	public String getData(String key) {
-		// Get class name
-		if (dataProperties == null) {
-			String filePath = System.getProperty("user.dir")+"\\src\\test\\DataFiles\\"+testName+".properties";
-			dataProperties = new Properties();
-			try {
-				dataProperties.load(new FileInputStream(new File(filePath)));
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 		return dataProperties.getProperty(key);
 	}
 
