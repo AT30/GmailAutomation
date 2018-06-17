@@ -12,7 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
-
+import java.util.Map;
 import atu.testng.reports.ATUReports;
 
 public class ParentTest {
