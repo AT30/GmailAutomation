@@ -36,7 +36,7 @@ public class ParentTest {
 				System.out.println(key+" : "+envVariables.get(key));
 				configProperties.setProperty(key, envVariables.get(key));
 			}
-
+			System.out.println("Config: "+configProperties);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
