@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
@@ -16,14 +17,28 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>local-maven-repo</id>
+			<url>file:///${basedir}/libs</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>
+
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<fork>true</fork>
+					<executable>C:\Program Files\Java\jdk1.8.0_171\bin\javac.exe</executable>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.19.1</version>
-
 				<configuration>
 					<suiteXmlFiles>
 						<suiteXmlFile>testng.xml</suiteXmlFile>
@@ -49,18 +64,82 @@
 			<version>2.45.0</version>
 		</dependency>
 		<dependency>
-			<groupId>atu</groupId>
-			<artifactId>atu</artifactId>
+			<groupId>org.atureports</groupId>
+			<artifactId>ATUTestRecorder_2.1.jar</artifactId>
 			<scope>system</scope>
-			<version>2.45.0</version>
-			<systemPath>${basedir}/libs/ATUReporter_Selenium_testNG_5.1.1.jar</systemPath>
+			<version>6.9.9</version>
+			<systemPath>${basedir}/libs/ATUTestRecorder_2.1.jar</systemPath>
 		</dependency>
 		<dependency>
-			<groupId>atu1</groupId>
-			<artifactId>atu1</artifactId>
+			<groupId>org.atureports</groupId>
+			<artifactId>ATUReporter_Selenium_testNG_5.1.1</artifactId>
 			<scope>system</scope>
-			<version>2.45.0</version>
-			<systemPath>${basedir}/libs/ATUTestRecorder_2.1.jar</systemPath>
+			<version>6.9.9</version>
+			<systemPath>${basedir}/libs/ATUReporter_Selenium_testNG_5.1.1.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>curvesapi-1.04</groupId>
+			<artifactId>curvesapi-1.04</artifactId>
+			<scope>system</scope>
+			<version>6.9.9</version>
+			<systemPath>${basedir}/libs/curvesapi-1.04.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>dom4j-1.3</groupId>
+			<artifactId>dom4j-1.3.jar</artifactId>
+			<scope>system</scope>
+			<version>6.9.9</version>
+			<systemPath>${basedir}/libs/dom4j-1.3.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>jcommon-1.0.23.jar</groupId>
+			<artifactId>jcommon-1.0.23.jar</artifactId>
+			<scope>system</scope>
+			<version>6.9.9</version>
+			<systemPath>${basedir}/libs/jcommon-1.0.23.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>jfreechart-1.0.19</groupId>
+			<artifactId>jfreechart-1.0.19</artifactId>
+			<scope>system</scope>
+			<version>6.9.9</version>
+			<systemPath>${basedir}/libs/jfreechart-1.0.19.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>poi-3.15-beta2</groupId>
+			<artifactId>poi-3.15-beta2</artifactId>
+			<scope>system</scope>
+			<version>6.9.9</version>
+			<systemPath>${basedir}/libs/poi-3.15-beta2.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>poi-ooxml-3.15-beta2</groupId>
+			<artifactId>poi-ooxml-3.15-beta2</artifactId>
+			<scope>system</scope>
+			<version>6.9.9</version>
+			<systemPath>${basedir}/libs/poi-ooxml-3.15-beta2.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>poi-ooxml-schemas-3.15-beta2</groupId>
+			<artifactId>poi-ooxml-schemas-3.15-beta2</artifactId>
+			<scope>system</scope>
+			<version>6.9.9</version>
+			<systemPath>${basedir}/libs/poi-ooxml-schemas-3.15-beta2.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>xmlbeans-2.6.0</groupId>
+			<artifactId>xmlbeans-2.6.0</artifactId>
+			<scope>system</scope>
+			<version>6.9.9</version>
+			<systemPath>${basedir}/libs/xmlbeans-2.6.0.jar</systemPath>
 		</dependency>
 
 	</dependencies>
