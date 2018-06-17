@@ -49,10 +49,15 @@ public class ParentTest {
 	@BeforeClass
 	public void setUp() {
 		// Get Test data
+		System.out.println("In set up");
 		String filePath = System.getProperty("user.dir")+"\\src\\test\\DataFiles\\"+testName+".properties";
+		System.out.println("Data file path:"+filePath);
 		dataProperties = new Properties();
+		System.out.println("Data file object created.");
+		
 		try {
 			dataProperties.load(new FileInputStream(new File(filePath)));
+			System.out.println("Data file loaded");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -95,7 +100,6 @@ public class ParentTest {
 	public static String getConfig(String key) {
 		System.out.println("Required key: "+key);
 		System.out.println("Value: "+configProperties.getProperty(key));
-
 		return configProperties.getProperty(key);
 	}
 
