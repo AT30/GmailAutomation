@@ -29,6 +29,14 @@ public class ParentTest {
 		configProperties = new Properties();
 		try {
 			configProperties.load(new FileInputStream(new File(System.getProperty("user.dir")+"\\src\\test\\Config\\CommonConfigs.properties")));
+			
+			// Put config data in System.setEnv
+			Map<String, String> envVariables = System.getenv();
+			for (String key : envVariables.keySet()) {
+				System.out.println(key+" : "+envVariables.get(key));
+				configProperties.setProperty(key, envVariables.get(key));
+			}
+
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -43,8 +51,7 @@ public class ParentTest {
 	@BeforeClass
 	public void setUp() {
 		// Get browser type
-// 		String browserType = getConfig("browserType");
-		String browserType = System.getenv("browserType");
+ 		String browserType = getConfig("browserType");
 		System.out.println("Selected browser: "+browserType);
 		
 		switch (browserType) {
