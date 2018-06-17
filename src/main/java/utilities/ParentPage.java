@@ -8,6 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import atu.testng.reports.ATUReports;
+import atu.testng.reports.logging.LogAs;
+
 public class ParentPage {
 	WebDriver driver;
 	WebDriverWait wait = null;
@@ -34,18 +37,21 @@ public class ParentPage {
 		element = waitForElement(element, Condition.VISIBLE);
 		Select select = new Select(element);
 		select.selectByVisibleText(visibleText);
+		ATUReports.add("Select dropdown by visible text", visibleText, LogAs.PASSED, null);
 	}
 
 	public void selectByIndex(WebElement element,int index) {
 		element = waitForElement(element, Condition.VISIBLE);
 		Select select = new Select(element);
 		select.selectByIndex(index);
+		ATUReports.add("Select dropdown value by index", index+"", LogAs.PASSED, null);
 	}
 	
 	public void selectByValue(WebElement element,String value) {
 		element = waitForElement(element, Condition.VISIBLE);
 		Select select = new Select(element);
 		select.selectByValue(value);
+		ATUReports.add("Select dropdown by value", value, LogAs.PASSED, null);
 	}
 
 	public String getText(WebElement element) {
@@ -54,17 +60,19 @@ public class ParentPage {
 	}
 	
 	public WebElement waitForElement(WebElement element,Condition condition) {
-		WebElement webElement = null;
-		
-		switch (condition) {
-		case VISIBLE:
-			webElement = wait.until(ExpectedConditions.visibilityOf(element));
-			break;
-		case CLICKABLE:
-			webElement= wait.until(ExpectedConditions.elementToBeClickable(element));
-			break;
+		try {
+			switch (condition) {
+			case VISIBLE:
+				return wait.until(ExpectedConditions.visibilityOf(element));
+			case CLICKABLE:
+				return wait.until(ExpectedConditions.elementToBeClickable(element));
+			default:
+				return null;
+			}	
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
 		}
-		return webElement;
 	}
 
 	public void dragAndDrop(WebElement dragableElement,WebElement dropableElement) {
