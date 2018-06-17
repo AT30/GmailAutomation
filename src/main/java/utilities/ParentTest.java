@@ -93,6 +93,9 @@ public class ParentTest {
 	}
 
 	public static String getConfig(String key) {
+		System.out.println("Required key: "+key);
+		System.out.println("Value: "+configProperties.getProperty(key));
+
 		return configProperties.getProperty(key);
 	}
 
